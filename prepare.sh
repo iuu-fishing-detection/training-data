@@ -2,7 +2,7 @@
 
 mkdir data/merged
 scripts/merge_ais_and_ranges.py \
-  --source-paths data/time-ranges/*.csv \
+  --source-paths data/time-ranges/kristina_ps.csv \
   --point-source-path data/tracks \
   --dest-path data/merged
 

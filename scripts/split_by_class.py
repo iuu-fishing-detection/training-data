@@ -9,7 +9,7 @@ import tools as trtools
 import logging
 import numpy as np
 import csv
-
+from functools import reduce
 
 def split_by_vessel_type(points, class_map):
     mmsis = np.unique(points['mmsi'])
@@ -20,7 +20,7 @@ def split_by_vessel_type(points, class_map):
         if cls not in mmsi_map: mmsi_map[cls] = set()
         mmsi_map[cls].add(mmsi)
 
-    for cls, mmsis in mmsi_map.iteritems():
+    for cls, mmsis in mmsi_map.items():
         filter = reduce(
             lambda a, b: a | b,
             (points['mmsi'] == mmsi for mmsi in mmsis))

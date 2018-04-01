@@ -4,8 +4,8 @@ import numpy.lib.recfunctions
 
 def merge_ais(points, ranges):
     points.sort(order=["mmsi", "timestamp"])
-    points = numpy.lib.recfunctions.append_fields(points, 'is_fishing', [], dtypes='<f4')
-    points['is_fishing'] = -1
+    points = numpy.lib.recfunctions.append_fields(points, 'classification', [], dtypes='<f4')
+    points['classification'] = -1
 
     mmsi_ranges = {}
 
@@ -24,6 +24,6 @@ def merge_ais(points, ranges):
         slice = get_slice(points[mmsi_slice['start']:mmsi_slice['end']], 'timestamp', range['start_time'], range['end_time'])
         slice['start'] += mmsi_slice['start']
         slice['end'] += mmsi_slice['start']
-        points['is_fishing'][slice['start']:slice['end']] = range['is_fishing']
+        points['classification'][slice['start']:slice['end']] = range['is_fishing']
     return points
 
